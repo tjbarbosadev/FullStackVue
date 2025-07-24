@@ -16,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/tjbarbosadev/FullStackVue/issues"
   },
-  "homepage": "https://github.com/tjbarbosadev/FullStackVue#readme"
+  "homepage": "https://github.com/tjbarbosadev/FullStackVue#readme",
+  "dependencies": {
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "axios": "^1.11.0",
+    "express": "^5.1.0",
+    "jest": "^30.0.5",
+    "nodemon": "^3.1.10",
+    "pg-promise": "^11.15.0",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
 }
