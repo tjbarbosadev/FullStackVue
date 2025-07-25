@@ -1,25 +1,11 @@
-import Column from '../entity/Column';
-import pgp from 'pg-promise';
+import Column from '../domain/entity/Column';
+import ColumnRepository from '../domain/repository/ColumnRepository';
 
 export default class ColumnService {
-  constructor() {}
+  constructor(readonly columnRepository: ColumnRepository) {}
 
   async getColumns(idBoard: number): Promise<Column[]> {
-    const connection = pgp()(
-      'postgres://postgres:admin123@localhost:5432/postgres'
-    );
-    const columnsData = await connection.query(
-      'select * from vuefs.column where id_board = $1',
-      [idBoard]
-    );
-    const columns: Column[] = [];
-
-    for (const columnData of columnsData) {
-      columns.push(new Column(columnData.name, columnData.has_estimative));
-    }
-
-    console.log(columns);
-    await connection.$pool.end();
+    const columns = this.columnRepository.findAllByIdBoard(idBoard);
     return columns;
   }
 }
