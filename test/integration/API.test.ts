@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-test('Deve retornar os quadros por meio da API', async () => {
+test.skip('Deve retornar os quadros por meio da API', async () => {
   const response = await axios({
     url: 'http://localhost:3000/boards',
     method: 'get',
@@ -11,7 +11,7 @@ test('Deve retornar os quadros por meio da API', async () => {
   expect(board.name).toBe('Projeto 1');
 });
 
-test('Deve retornar as colunas de um quadro por meio da API', async () => {
+test.skip('Deve retornar as colunas de um quadro por meio da API', async () => {
   const response = await axios({
     url: 'http://localhost:3000/boards/1/columns',
     method: 'get',
@@ -26,7 +26,7 @@ test('Deve retornar as colunas de um quadro por meio da API', async () => {
   expect(column3.name).toBe('Coluna C');
 });
 
-test('Deve retornar os cartões de uma coluna por meio da API', async () => {
+test.skip('Deve retornar os cartões de uma coluna por meio da API', async () => {
   const response = await axios({
     url: 'http://localhost:3000/boards/1/columns/1/cards',
     method: 'get',

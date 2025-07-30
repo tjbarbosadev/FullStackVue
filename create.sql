@@ -1,25 +1,25 @@
--- drop table vuefs.card;
--- drop table vuefs.column;
--- drop table vuefs.board;
+drop table vuefs.card;
+drop table vuefs.column;
+drop table vuefs.board;
 
--- create table vuefs.board (
---   id_board serial primary key,
---   name text
--- );
+create table vuefs.board (
+  id_board serial primary key,
+  name text
+);
 
--- create table vuefs.column (
---   id_column serial primary key,
---   id_board integer references vuefs.board (id_board),
---   name text,
---   has_estimative boolean
--- );
+create table vuefs.column (
+  id_column serial primary key,
+  id_board integer references vuefs.board (id_board),
+  name text,
+  has_estimative boolean
+);
 
--- create table vuefs.card (
---   id_card serial primary key,
---   id_column integer references vuefs.column (id_column),
---   title text,
---   estimative integer
--- );
+create table vuefs.card (
+  id_card serial primary key,
+  id_column integer references vuefs.column (id_column),
+  title text,
+  estimative integer
+);
 
 insert into vuefs.board(name) values ('Projeto 1');
 insert into vuefs.column (id_board, name, has_estimative) values (1, 'Coluna A', true);
