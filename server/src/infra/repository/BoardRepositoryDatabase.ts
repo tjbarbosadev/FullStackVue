@@ -13,7 +13,7 @@ export default class BoardRepositoryDatabase implements BoardRepository {
     const boards: Board[] = [];
 
     for (const boardData of boardsData) {
-      const board = new Board(boardData.name);
+      const board = new Board(boardData.id_board, boardData.name);
       boards.push(board);
     }
     return boards;
@@ -25,7 +25,7 @@ export default class BoardRepositoryDatabase implements BoardRepository {
       [idBoard]
     );
     if (!boardData) throw new Error('Board not found');
-    const board = new Board(boardData.name);
+    const board = new Board(boardData.id_board, boardData.name);
     return board;
   }
 }

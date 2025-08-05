@@ -1,0 +1,26 @@
+import Column from '../../src/domain/entity/Column';
+import PgPromiseConnection from '../../src/infra/database/PgPromiseConnection';
+import ColumnsRepositoryDatabase from '../../src/infra/repository/ColumnRepositoryDatabase';
+import ColumnService from '../../src/service/ColumnService';
+
+test('Deve listar as colunas', async () => {
+  const connection = new PgPromiseConnection();
+  const columnRepository = new ColumnsRepositoryDatabase(connection);
+  const columnService = new ColumnService(columnRepository);
+  const columns = await columnService.getColumns(1);
+  expect(columns).toHaveLength(3);
+  await connection.close();
+});
+
+test('Deve salvar uma coluna', async () => {
+  const connection = new PgPromiseConnection();
+  const columnRepository = new ColumnsRepositoryDatabase(connection);
+  const columnService = new ColumnService(columnRepository);
+  const idColumn = await columnService.saveColumn(
+    new Column(1, 1, 'Todo', true)
+  );
+  const column = await columnService.getColumn(idColumn);
+  expect(column.name).toBe('Todo');
+  await columnService.deleteColumn(idColumn);
+  await connection.close();
+});

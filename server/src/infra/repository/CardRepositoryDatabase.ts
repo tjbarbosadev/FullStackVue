@@ -7,12 +7,19 @@ export default class CardRepositoryDatabase implements CardRepository {
 
   async findAllByIdColumn(idColumn: number): Promise<Card[]> {
     const cardsData = await this.connection.query(
-      'select * from vuefs.card where id_column = $1',
+      'select id_column, id_card, title, estimative from vuefs.card where id_column = $1',
       [idColumn]
     );
     const cards: Card[] = [];
     for (const cardData of cardsData) {
-      cards.push(new Card(cardData.title, cardData.estimative));
+      cards.push(
+        new Card(
+          cardData.id_board,
+          cardData.id_card,
+          cardData.title,
+          cardData.estimative
+        )
+      );
     }
 
     return cards;

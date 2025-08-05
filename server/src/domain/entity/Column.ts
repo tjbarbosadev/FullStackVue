@@ -1,5 +1,6 @@
 export default class Column {
   constructor(
+    readonly idBoard: number,
     readonly idColumn: number,
     readonly name: string,
     readonly hasEstimative: boolean

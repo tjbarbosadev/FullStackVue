@@ -8,14 +8,14 @@ import ColumnsRepositoryDatabase from './infra/repository/ColumnRepositoryDataba
 const connection = new PgPromiseConnection();
 const http = new ExpressAdapter();
 
-const BoardRepository = new BoardRepositoryDatabase(connection);
+const boardRepository = new BoardRepositoryDatabase(connection);
 const columnRepository = new ColumnsRepositoryDatabase(connection);
 const cardRepository = new CardRepositoryDatabase(connection);
 
 new BoardController(
   http,
   connection,
-  BoardRepository,
+  boardRepository,
   columnRepository,
   cardRepository
 );
